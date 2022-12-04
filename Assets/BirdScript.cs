@@ -25,13 +25,11 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-        // If the bird isn't alive make it rotate a bit
-        //if (!birdIsAlive)
-        //{
-        //    myRigidbody.MoveRotation(myRigidbody.rotation - 40 * Time.fixedDeltaTime);
-        //}
+        if (transform.position.y > 15 || transform.position.y < -15)
+        {
+            Debug.Log("Bird went off the screen");
+            logic.GameOver();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
