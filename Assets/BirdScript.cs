@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BirdScript : MonoBehaviour
 {
@@ -13,15 +14,18 @@ public class BirdScript : MonoBehaviour
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
+        Debug.Log("Printing Controllers: " + Gamepad.all.Count.ToString());
+        for (int i = 0; i < Gamepad.all.Count; i++)
+        {
+            Debug.Log(Gamepad.all[i].name);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive)
-        {
-            myRigidbody.velocity = Vector2.up * flapStrength;
-        }
+        
 
         // If the bird isn't alive make it rotate a bit
         //if (!birdIsAlive)
@@ -37,5 +41,13 @@ public class BirdScript : MonoBehaviour
 
         var impulse = (-40 * Mathf.Deg2Rad) * myRigidbody.inertia;
         myRigidbody.AddTorque(impulse, ForceMode2D.Impulse);
+    }
+
+    public void OnFlap(InputAction.CallbackContext context)
+    {
+        if (birdIsAlive)
+        {
+            myRigidbody.velocity = Vector2.up * flapStrength;
+        }
     }
 }
