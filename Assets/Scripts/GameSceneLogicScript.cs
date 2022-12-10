@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LogicScript : MonoBehaviour
+public class GameSceneLogicScript : MonoBehaviour
 {
     public int playerScore;
     public Text scoreText;
@@ -24,9 +24,27 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void ReturnToMainMenu()
+    {
+        GameManagerScript.ReturnToTitleScreen();
+    }
+
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
         gameOverAudioSource.Play();
+    }
+
+    public void TogglePause()
+    {
+        if (Time.timeScale == 0)
+        {
+            Debug.Log("Resuming Game");
+            Time.timeScale = 1f;
+        } else
+        {
+            Debug.Log("Pausing Game");
+            Time.timeScale = 0f;
+        }
     }
 }

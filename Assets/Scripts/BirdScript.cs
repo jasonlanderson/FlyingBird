@@ -7,13 +7,13 @@ public class BirdScript : MonoBehaviour
 {
     public Rigidbody2D myRigidbody;
     public float flapStrength = 5;
-    public LogicScript logic;
+    public GameSceneLogicScript logic;
     public bool birdIsAlive = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameSceneLogicScript>();
 
         Debug.Log("Printing Controllers: " + Gamepad.all.Count.ToString());
         for (int i = 0; i < Gamepad.all.Count; i++)

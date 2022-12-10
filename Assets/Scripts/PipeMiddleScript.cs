@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PipeMiddleScript : MonoBehaviour
 {
-    public LogicScript logic;
+    public GameSceneLogicScript logic;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameSceneLogicScript>();
     }
 
     // Update is called once per frame
